@@ -4,7 +4,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GestureConfig, MatProgressSpinnerModule } from '@angular/material';
+import {GestureConfig, MatProgressSpinnerModule, MatTabsModule} from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 // Angular in memory
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -52,7 +52,11 @@ import * as typescript from 'highlight.js/lib/languages/typescript';
 import * as scss from 'highlight.js/lib/languages/scss';
 import * as xml from 'highlight.js/lib/languages/xml';
 import * as json from 'highlight.js/lib/languages/json';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
 // tslint:disable-next-line:class-name
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	wheelSpeed: 0.5,
@@ -100,11 +104,22 @@ export function hljsLanguages(): HighlightLanguage[] {
 		StoreDevtoolsModule.instrument(),
 		AuthModule.forRoot(),
 		NgbModule,
+		FormsModule,
+		MatTabsModule,
+		MatInputModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
 		TranslateModule.forRoot(),
 		MatProgressSpinnerModule,
 		InlineSVGModule.forRoot()
 	],
-	exports: [],
+	exports: [
+		MatTabsModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatInputModule,
+	],
 	providers: [
 		AuthService,
 		LayoutConfigService,
@@ -140,7 +155,8 @@ export function hljsLanguages(): HighlightLanguage[] {
 		TypesUtilsService,
 		LayoutUtilsService,
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

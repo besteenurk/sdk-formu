@@ -1,10 +1,10 @@
 import { NgxPermissionsModule } from 'ngx-permissions';
 // Angular
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatProgressBarModule, MatTabsModule, MatTooltipModule } from '@angular/material';
+import {MatButtonModule, MatCardModule, MatInputModule, MatProgressBarModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 // NgBootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Translation
@@ -37,6 +37,7 @@ import { HtmlClassService } from './html-class.service';
 import { HeaderMobileComponent } from './header/header-mobile/header-mobile.component';
 import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from '../../../core/auth';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
 	declarations: [
@@ -84,6 +85,9 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		MenuHorizontalComponent,
 
 		ErrorPageComponent,
+		MatTabsModule,
+		MatFormFieldModule,
+		MatInputModule,
 	],
 	providers: [
 		HtmlClassService,
@@ -101,16 +105,20 @@ import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from
 		CoreModule,
 		PerfectScrollbarModule,
 		NgbModule,
+		MatCardModule,
 		FormsModule,
 		MatProgressBarModule,
 		MatTabsModule,
 		MatButtonModule,
 		MatTooltipModule,
+		MatFormFieldModule,
+		MatInputModule,
 		TranslateModule.forChild(),
 		LoadingBarModule,
 		NgxDaterangepickerMd,
 		InlineSVGModule
-	]
+	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ThemeModule {
 }

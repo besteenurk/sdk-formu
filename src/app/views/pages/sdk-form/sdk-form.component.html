@@ -1,0 +1,41 @@
+<form [formGroup]="houseInfForm" (ngSubmit)="onSubmitHouseForm()" class="houseForm">
+	<label>
+		<input type="text" placeholder="Hane Adresi" formControlName="street">
+	</label>
+	<label>
+		<input type="tel" placeholder="Hane Ev Telefonu" formControlName="housePhone">
+	</label>
+	<label>
+		<input type="tel" placeholder="Hane Cep Telefonu" formControlName="cellPhone">
+	</label>
+
+	<label>
+		<input type="text" placeholder="Ad" formControlName="firstName">
+	</label>
+	<label>
+		<input type="text" placeholder="Soyad" formControlName="lastName">
+	</label>
+	<label>
+		<input type="text" placeholder="TC" formControlName="tc">
+	</label>
+
+	<button type="submit" [disabled]="!houseInfForm.valid">Submit</button>
+</form>
+
+<!--<form [formGroup]="personalForm" (ngSubmit)="onSubmitPersonalForm()" class="personalForm">
+
+	<button type="submit" [disabled]="!personalForm.valid">Submit</button>
+</form>-->
+
+
+
+<mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+	<mat-tab label="First">
+		<!--<label>q1</label><input placeholder="name">-->
+	</mat-tab>
+	<mat-tab label="Second"> vev </mat-tab>
+	<mat-tab label="Third"> vevev </mat-tab>
+</mat-tab-group>
+
+<!--<input type="text" [formControl]="sdkForm">-->
+

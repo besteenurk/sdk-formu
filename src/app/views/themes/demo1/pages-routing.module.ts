@@ -7,6 +7,7 @@ import { ErrorPageComponent } from './content/error-page/error-page.component';
 // Auth
 import { AuthGuard } from '../../../core/auth';
 import { NgxPermissionsGuard } from 'ngx-permissions';
+import {SdkFormComponent} from '../../pages/sdk-form/sdk-form.component';
 
 const routes: Routes = [
 	{
@@ -19,35 +20,9 @@ const routes: Routes = [
 				loadChildren: 'app/views/pages/dashboard/dashboard.module#DashboardModule'
 			},
 			{
-				path: 'mail',
-				loadChildren: 'app/views/pages/apps/mail/mail.module#MailModule'
-			},
-			{
-				path: 'ecommerce',
-				loadChildren: 'app/views/pages/apps/e-commerce/e-commerce.module#ECommerceModule',
-				// canActivate: [NgxPermissionsGuard],
-				// data: {
-				// 	permissions: {
-				// 		only: ['accessToECommerceModule'],
-				// 		redirectTo: 'error/403'
-				// 	}
-				// }
-			},
-			{
-				path: 'ngbootstrap',
-				loadChildren: 'app/views/pages/ngbootstrap/ngbootstrap.module#NgbootstrapModule'
-			},
-			{
-				path: 'material',
-				loadChildren: 'app/views/pages/material/material.module#MaterialModule'
-			},
-			{
-				path: 'user-management',
-				loadChildren: 'app/views/pages/user-management/user-management.module#UserManagementModule'
-			},
-			{
-				path: 'builder',
-				loadChildren: 'app/views/themes/demo1/content/builder/builder.module#BuilderModule'
+				path: 'sdk',
+				// loadChildren: 'app/views/pages/sdk-form/sdk-form.module#SdkFormModule'
+				component: SdkFormComponent
 			},
 			{
 				path: 'error/403',

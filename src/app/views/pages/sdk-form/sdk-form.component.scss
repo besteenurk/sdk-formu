@@ -1,0 +1,18 @@
+.houseForm {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	flex: auto;
+	align-content: center;
+}
+.houseForm > * {
+	width: 100%;
+}
+
+.example-container {
+	display: flex;
+	flex-direction: column;
+}
+.example-container > * {
+	width: 100%;
+}

@@ -13,7 +13,8 @@ import { MailModule } from './apps/mail/mail.module';
 import { ECommerceModule } from './apps/e-commerce/e-commerce.module';
 import { UserManagementModule } from './user-management/user-management.module';
 import { MyPageComponent } from './my-page/my-page.component';
-
+import {SdkFormModule} from './sdk-form/sdk-form.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
 	declarations: [MyPageComponent],
 	exports: [],
@@ -23,7 +24,9 @@ import { MyPageComponent } from './my-page/my-page.component';
 		FormsModule,
 		NgbModule,
 		CoreModule,
+		SdkFormModule,
 		PartialsModule,
+		MatFormFieldModule,
 		MailModule,
 		ECommerceModule,
 		UserManagementModule,
