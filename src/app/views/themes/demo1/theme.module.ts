@@ -4,7 +4,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {MatButtonModule, MatCardModule, MatInputModule, MatProgressBarModule, MatTabsModule, MatTooltipModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatProgressBarModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 // NgBootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Translation
@@ -38,6 +38,8 @@ import { HeaderMobileComponent } from './header/header-mobile/header-mobile.comp
 import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { PermissionEffects, permissionsReducer, RoleEffects, rolesReducer } from '../../../core/auth';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {DemoMaterialModule} from '../../../material-module';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
 	declarations: [
@@ -104,15 +106,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 		PartialsModule,
 		CoreModule,
 		PerfectScrollbarModule,
+		DemoMaterialModule,
 		NgbModule,
-		MatCardModule,
 		FormsModule,
 		MatProgressBarModule,
 		MatTabsModule,
 		MatButtonModule,
 		MatTooltipModule,
+		MatIconModule,
+		MatCardModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatExpansionModule,
 		TranslateModule.forChild(),
 		LoadingBarModule,
 		NgxDaterangepickerMd,

@@ -1,15 +1,16 @@
+<!--
 <kt-notice [icon]="'flaticon-warning kt-font-primary'">
 	The layout builder helps to configure the layout with preferred options and preview it in real time.
 	The configured layout options will be saved until you change or reset them.
 	To use the layout builder choose the layout options and click the <code>Preview</code> button to preview the changes.	<a class="kt-link" href="https://ng-bootstrap.github.io/#/components/progressbar/examples" target="_blank">demos & documentation</a>
 </kt-notice>
 
-<form class="kt-form kt-form--label-right" novalidate #form="ngForm" (ngSubmit)="submitPreview($event)">
-	<kt-portlet [class]="'kt-portlet--tabs'">
+<form class="kt-form kt-form&#45;&#45;label-right" novalidate #form="ngForm" (ngSubmit)="submitPreview($event)">
+	<kt-portlet [class]="'kt-portlet&#45;&#45;tabs'">
 		<kt-portlet-header [noTitle]="true">
 			<ng-container ktPortletTools>
 				<ul ktTabClickEvent class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-left nav-tabs-line-primary" role="tablist">
-					<!-- skins option will be implemented soon -->
+					&lt;!&ndash; skins option will be implemented soon &ndash;&gt;
 					<li class="nav-item">
 						<a (click)="tab.select('tab-id-2')" class="nav-link active" href="javascript:;" role="tab">
 							Page
@@ -45,7 +46,7 @@
 		</kt-portlet-header>
 		<kt-portlet-body>
 			<ngb-tabset #tab="ngbTabset">
-				<!-- skins option will be implemented soon -->
+				&lt;!&ndash; skins option will be implemented soon &ndash;&gt;
 				<ngb-tab id="tab-id-2">
 					<ng-template ngbTabContent>
 						<div class="kt-section kt-margin-t-30">
@@ -73,7 +74,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Desktop Fixed Header:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 									        <input type="checkbox" name="builder[header][self][fixed][desktop]" [(ngModel)]="model.header.self.fixed.desktop" value="true"/>
 									        <span></span>
@@ -85,7 +86,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Mobile Fixed Header:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][self][fixed][mobile]" [(ngModel)]="model.header.self.fixed.mobile" value="true"/>
 									        <span></span>
@@ -95,12 +96,12 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Header Menu:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][menu][self][display]" [(ngModel)]="model.header.menu.self.display" value="true"/>
 									        <span></span>
@@ -124,7 +125,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Header Menu Arrows:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][menu][self][root-arrow]" [(ngModel)]="model.header.menu.self['root-arrow']" value="true"/>
 									        <span></span>
@@ -134,7 +135,7 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Header Search Layout:</label>
@@ -157,7 +158,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Topbar Search:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][topbar][search][display]" [(ngModel)]="model.header.topbar.search.display" value="true" />
 									        <span></span>
@@ -177,12 +178,12 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Topbar Notifications:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][topbar][notifications][display]" [(ngModel)]="model.header.topbar.notifications.display" value="true" />
 									        <span></span>
@@ -212,12 +213,12 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Topbar Quick Actions:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][topbar][quick-actions][display]" [(ngModel)]="model.header.topbar['quick-actions'].display" value="true" />
 									        <span></span>
@@ -247,12 +248,12 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Topbar User:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][topbar][user][display]" [(ngModel)]="model.header.topbar.user.display" value="true" />
 									        <span></span>
@@ -282,12 +283,12 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Topbar Languages:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][topbar][languages][display]" [(ngModel)]="model.header.topbar.languages.display" value="true" />
 									        <span></span>
@@ -297,12 +298,12 @@
 									</div>
 								</div>
 
-								<div class="kt-separator kt-separator--space-lg kt-separator--border-dashed"></div>
+								<div class="kt-separator kt-separator&#45;&#45;space-lg kt-separator&#45;&#45;border-dashed"></div>
 
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Quick Panel:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[header][topbar][quick-panel][display]" [(ngModel)]="model.header.topbar['quick-panel'].display" value="true" />
 									        <span></span>
@@ -322,7 +323,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Display Subheader:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 									        <input type="checkbox" name="builder[subheader][display]" [(ngModel)]="model.subheader.display" value="true"/>
 									        <span></span>
@@ -334,7 +335,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Fixed Subheader:</label>
 									<div class="col-lg-9 col-xl-4">
-									<span class="kt-switch kt-switch--icon-check">
+									<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 									        <input type="checkbox" name="builder[subheader][fixed]" [(ngModel)]="model.subheader.fixed" value="true"/>
 									        <span></span>
@@ -375,7 +376,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Fixed:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[aside][self][fixed]" [(ngModel)]="model.aside.self.fixed" value="true"/>
 									        <span></span>
@@ -387,7 +388,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Minimize:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[aside][self][minimize][toggle]" [(ngModel)]="model.aside.self.minimize.toggle" value="true"/>
 									        <span></span>
@@ -399,7 +400,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Default Minimize:</label>
 									<div class="col-lg-9 col-xl-4">
-										<span class="kt-switch kt-switch--icon-check">
+										<span class="kt-switch kt-switch&#45;&#45;icon-check">
 										<label>
 											<input type="checkbox" name="builder[aside][self][minimize][default]" [(ngModel)]="model.aside.self.minimize.default" value="true"/>
 									        <span></span>
@@ -429,7 +430,7 @@
 								<div class="form-group row">
 									<label class="col-lg-3 col-form-label">Fixed Footer:</label>
 									<div class="col-lg-9 col-xl-4">
-									<span class="kt-switch kt-switch--icon-check">
+									<span class="kt-switch kt-switch&#45;&#45;icon-check">
 									    <label>
 											<input type="checkbox" name="builder[footer][self][fixed]" [(ngModel)]="model.footer.self.fixed" value="true"/>
 									        <span></span>
@@ -474,3 +475,4 @@
 		</div>
 	</kt-portlet-body>
 </kt-portlet>
+-->

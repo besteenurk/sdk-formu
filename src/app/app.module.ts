@@ -57,6 +57,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import {DemoMaterialModule} from './material-module';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {SdkFormComponent} from './views/pages/sdk-form/sdk-form.component';
+import {MatCardModule} from '@angular/material/card';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {SettingsModule} from './views/pages/settings/settings.module';
+
+
 // tslint:disable-next-line:class-name
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	wheelSpeed: 0.5,
@@ -84,7 +92,9 @@ export function hljsLanguages(): HighlightLanguage[] {
 }
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [
+		AppComponent
+	],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -106,7 +116,10 @@ export function hljsLanguages(): HighlightLanguage[] {
 		NgbModule,
 		FormsModule,
 		MatTabsModule,
+		DemoMaterialModule,
 		MatInputModule,
+		MatCardModule,
+		MatExpansionModule,
 		ReactiveFormsModule,
 		MatFormFieldModule,
 		TranslateModule.forRoot(),
@@ -119,6 +132,7 @@ export function hljsLanguages(): HighlightLanguage[] {
 		ReactiveFormsModule,
 		MatFormFieldModule,
 		MatInputModule,
+		MatExpansionModule,
 	],
 	providers: [
 		AuthService,
@@ -160,3 +174,5 @@ export function hljsLanguages(): HighlightLanguage[] {
 })
 export class AppModule {
 }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

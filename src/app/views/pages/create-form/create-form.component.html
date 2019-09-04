@@ -1,0 +1,54 @@
+<div style="padding-left:80px; padding-right:80px; margin-top: 15px">
+<form [formGroup]="houseRegForm" (submit)="houseFormControl()">
+	<mat-card>
+	<table class="example-full-width" cellspacing="0" style="margin-top: 15px">
+		<tr>
+			<td>
+				<mat-form-field>
+					<input [value]="date.value" matInput [matDatepicker]="picker" placeholder="Görüşme tarihini belirleyiniz" required
+						   formControlName="meetingDate">
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+			</td>
+			<td>
+				<mat-form-field style="margin-top: 25px">
+					<mat-select placeholder="Denetlemeyi yapacak sorumluyu seçiniz" required
+								formControlName="responsiblePerson">
+						<mat-option value="Beste">Beste</mat-option>
+						<mat-option value="Nur">Nur</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<mat-form-field class="example-full-width">
+					<span matPrefix>+0 &nbsp;</span>
+					<input type="number" matInput placeholder="Ev Telefonu" maxlength="10" name="homePhone"
+						   formControlName="homePhone">
+					<mat-icon matSuffix>mode_edit</mat-icon>
+				</mat-form-field>
+			</td>
+			<td>
+				<mat-form-field class="example-full-width">
+					<span matPrefix>+90 &nbsp;</span>
+					<input type="number" matInput placeholder="Cep Telefonu" name="cellPhone"
+						   formControlName="cellPhone" maxlength="10">
+					<mat-icon matSuffix>mode_edit</mat-icon>
+				</mat-form-field>
+			</td>
+		</tr>
+	</table>
+		<mat-form-field class="example-full-width">
+						<textarea matInput placeholder="Hane Adresi" formControlName="houseAddress"
+								  name="houseAddress" required></textarea>
+		</mat-form-field>
+	</mat-card>
+	<div style="float: right;margin-top: 15px">
+		<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button class="form-control">
+			Kaydet
+		</button>
+	</div>
+</form>
+</div>

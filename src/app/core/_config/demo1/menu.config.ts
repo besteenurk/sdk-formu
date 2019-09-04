@@ -348,18 +348,39 @@ export class MenuConfig {
 				{
 					title: 'Dashboard',
 					root: true,
-					icon: 'flaticon2-architecture-and-city',
+					icon: 'flaticon-home',
 					page: 'dashboard',
 					translate: 'MENU.DASHBOARD',
-					bullet: 'dot',
 				},
-				{section: 'Form'},
 				{
 					title: 'SDK Form',
 					root: true,
-					icon: 'flaticon2-expand',
-					page: 'sdk'
+					icon: 'flaticon2-writing',
+					submenu: [
+					{
+						title: 'Form Oluştur',
+						page: 'createForm',
+					},
+					{
+						title: 'SDK Formunu Doldur',
+						page: 'sdk'
+					}]
 				},
+				{
+					title: 'Ayarlar',
+					root: true,
+					icon: 'flaticon-settings-1',
+					submenu: [
+						{
+							title: 'Personel Oluştur',
+							page: 'createPersonel'
+						},
+						{
+							title: 'Personel Listesi',
+							page: 'settings'
+						}
+						]
+				}
 			]
 		},
 	};

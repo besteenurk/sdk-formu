@@ -2,11 +2,11 @@
 <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
 <div ktOffcanvas [options]="offcanvasOptions" class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
 	<div ktMenu [options]="menuOptions" id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile" [ngClass]="htmlClassService.getClasses('header_menu', true)">
-		<ul class="kt-menu__nav" [ngClass]="htmlClassService.getClasses('header_menu_nav', true)">
+		<!--<ul class="kt-menu__nav" [ngClass]="htmlClassService.getClasses('header_menu_nav', true)">
 			<ng-container *ngFor="let item of menuHorService.menuList$ | async">
 				<ng-container *ngIf="item.title" [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: item }"></ng-container>
 			</ng-container>
-		</ul>
+		</ul>-->
 	</div>
 </div>
 <!-- END: Horizontal Menu -->
@@ -21,7 +21,7 @@
 
 		<!-- if item has submenu -->
 		<ng-container *ngIf="item.submenu">
-			<a href="javascript:;" [ngClass]="{ 'kt-menu__toggle': item.root }" class="kt-menu__link">
+			<a href="javascript:;" [ngClass]="{ 'kt-menu__toggle': item.root }" class="kt-menu__link" style="background: white">
 
 				<ng-container [ngTemplateOutlet]="menuItemInnerTemplate" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
 
@@ -126,3 +126,4 @@
 		</ng-container>
 	</li>
 </ng-template>
+

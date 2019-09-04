@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class FormServiceService {
-	formData: FormServiceModel;
+	formData: { id: number; street: string; housePhone: string; cellPhone: string; firstName: string; lastName: string; tc: string; address: string };
 	readonly rootURL = 'http://localhost:59035/api';
 	list: FormServiceModel[];
 

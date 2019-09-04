@@ -7,7 +7,19 @@ export class PageConfig {
 			}
 		},
 		sdk: {
-			page: {title: 'SDK Form', desc: ''}
+			page: {title: 'Denetleme', desc: ''}
+		},
+		createForm: {
+			page: {title: 'Form Oluştur', desc: ''}
+		},
+		settings: {
+			page: {title: 'Personel Listesi', desc: ''}
+		},
+		userDefinition: {
+			page: {title: 'Kullanıcı Oluştur', desc: ''}
+		},
+		createPersonel: {
+			page: {title: 'Personel Oluştur', desc: ''}
 		},
 		error: {
 			404: {

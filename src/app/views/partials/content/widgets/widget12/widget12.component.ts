@@ -36,7 +36,7 @@ export class Widget12Component implements OnInit {
 		if (!this.data) {
 			const color = Chart.helpers.color;
 			this.data = {
-				labels: ['1 Jan', '2 Jan', '3 Jan', '4 Jan', '5 Jan', '6 Jan', '7 Jan'],
+				labels: ['1 Tem', '3 Tem', '5 Tem', '7 Tem', '9 Tem', '11 Tem', '13 Tem'],
 				datasets: [
 					{
 						fill: true,
@@ -51,7 +51,7 @@ export class Widget12Component implements OnInit {
 						pointHoverBackgroundColor: this.layoutConfigService.getConfig('colors.state.brand'),
 						pointHoverBorderColor: Chart.helpers.color('#000000').alpha(0.1).rgbString(),
 
-						data: [20, 40, 50, 25, 35, 60, 30]
+						data: [1, 3, 4, 1, 2, 4, 2]
 					},
 					{
 						fill: true,
@@ -66,7 +66,7 @@ export class Widget12Component implements OnInit {
 						pointHoverBackgroundColor: this.layoutConfigService.getConfig('colors.state.brand'),
 						pointHoverBorderColor: Chart.helpers.color('#000000').alpha(0.1).rgbString(),
 
-						data: [25, 45, 55, 30, 40, 65, 35]
+						data: [2, 4, 5, 4, 3, 3, 5]
 					}
 				]
 			};

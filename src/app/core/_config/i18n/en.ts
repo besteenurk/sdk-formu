@@ -16,36 +16,36 @@ export const locale = {
 		},
 		AUTH: {
 			GENERAL: {
-				OR: 'Or',
-				SUBMIT_BUTTON: 'Submit',
+				OR: 'Veya',
+				SUBMIT_BUTTON: 'Gönder',
 				NO_ACCOUNT: 'Don\'t have an account?',
-				SIGNUP_BUTTON: 'Sign Up',
-				FORGOT_BUTTON: 'Forgot Password',
-				BACK_BUTTON: 'Back',
+				SIGNUP_BUTTON: 'Kayıt Ol',
+				FORGOT_BUTTON: 'Şifremi Unuttum',
+				BACK_BUTTON: 'Geri',
 				PRIVACY: 'Privacy',
 				LEGAL: 'Legal',
 				CONTACT: 'Contact',
 			},
 			LOGIN: {
-				TITLE: 'Login Account',
-				BUTTON: 'Sign In',
+				TITLE: 'Giriş Hesabı',
+				BUTTON: 'Giriş Yap',
 			},
 			FORGOT: {
-				TITLE: 'Forgotten Password?',
+				TITLE: 'Şifrenizi mi unuttunuz?',
 				DESC: 'Enter your email to reset your password',
 				SUCCESS: 'Your account has been successfully reset.'
 			},
 			REGISTER: {
-				TITLE: 'Sign Up',
-				DESC: 'Enter your details to create your account',
-				SUCCESS: 'Your account has been successfuly registered.'
+				TITLE: 'Kayıt Ol',
+				DESC: 'Hesap oluşturmak için bilgilerinizi giriniz',
+				SUCCESS: 'Hesabınız başarılı bir şekilde oluşturuldu.'
 			},
 			INPUT: {
 				EMAIL: 'Email',
-				FULLNAME: 'Fullname',
-				PASSWORD: 'Password',
-				CONFIRM_PASSWORD: 'Confirm Password',
-				USERNAME: 'Username'
+				FULLNAME: 'Ad',
+				PASSWORD: 'Şifre',
+				CONFIRM_PASSWORD: 'Şifreyi doğrulayınız',
+				USERNAME: 'Kullanıcı adı'
 			},
 			VALIDATION: {
 				INVALID: '{{name}} is not valid',

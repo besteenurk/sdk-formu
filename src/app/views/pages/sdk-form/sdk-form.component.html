@@ -1,41 +1,3444 @@
-<form [formGroup]="houseInfForm" (ngSubmit)="onSubmitHouseForm()" class="houseForm">
-	<label>
-		<input type="text" placeholder="Hane Adresi" formControlName="street">
-	</label>
-	<label>
-		<input type="tel" placeholder="Hane Ev Telefonu" formControlName="housePhone">
-	</label>
-	<label>
-		<input type="tel" placeholder="Hane Cep Telefonu" formControlName="cellPhone">
-	</label>
+<button class="form-control" mat-button (click)="openDialog()" style="background: #4EAF47; color: #ffffff;"><mat-icon style="color: white;">info</mat-icon>  BİLGİLENDİRME</button>
 
-	<label>
-		<input type="text" placeholder="Ad" formControlName="firstName">
-	</label>
-	<label>
-		<input type="text" placeholder="Soyad" formControlName="lastName">
-	</label>
-	<label>
-		<input type="text" placeholder="TC" formControlName="tc">
-	</label>
-
-	<button type="submit" [disabled]="!houseInfForm.valid">Submit</button>
-</form>
-
-<!--<form [formGroup]="personalForm" (ngSubmit)="onSubmitPersonalForm()" class="personalForm">
-
-	<button type="submit" [disabled]="!personalForm.valid">Submit</button>
-</form>-->
-
-
-
+<!--
 <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
-	<mat-tab label="First">
-		<!--<label>q1</label><input placeholder="name">-->
+	<mat-tab label="Hane ve Kişi Kayıt Bilgileri">
+
+		<div class="col">
+			<input name="person" type="number" class="form-check" placeholder="kişi sayısı" required>
+
+		</div>
 	</mat-tab>
-	<mat-tab label="Second"> vev </mat-tab>
-	<mat-tab label="Third"> vevev </mat-tab>
+	<mat-tab label="Kişisel Sorular"> vev</mat-tab>
+	<mat-tab label="Değerlendirme Soruları"> vevev</mat-tab>
 </mat-tab-group>
+-->
+<!--
+<mat-accordion class="example-headers-align">
+	<form [formGroup]="houseRegForm" (submit)="houseFormControl()">
+	<mat-expansion-panel hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<mat-icon>home</mat-icon>
 
-<!--<input type="text" [formControl]="sdkForm">-->
+				Konut Bilgileri
+			</mat-panel-title>
+			<mat-panel-description>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
 
+		<mat-form-field class="example-full-width">
+					<textarea matInput placeholder="Hane Adresi" formControlName="houseAddress" name="houseAddress"></textarea>
+		</mat-form-field>
+		<mat-form-field class="example-full-width">
+			<span matPrefix>+0 &nbsp;</span>
+			<input type="tel" matInput placeholder="Ev Telefonu" name="homePhone" formControlName="homePhone">
+			<mat-icon matSuffix>mode_edit</mat-icon>
+		</mat-form-field>
+		<mat-form-field class="example-full-width">
+			<span matPrefix>+90 &nbsp;</span>
+			<input type="tel" matInput placeholder="Cep Telefonu" name="cellPhone" formControlName="cellPhone">
+			<mat-icon matSuffix>mode_edit</mat-icon>
+		</mat-form-field>
+		<mat-action-row>
+			<button mat-stroked-button class="form-control" (click)="nextStep()">Kaydet ve İlerle</button>
+		</mat-action-row>
+	</mat-expansion-panel>
+	</form>
+	<br>
+
+	<form [formGroup]="personRegForm" (submit)="personFormControl()">
+	<mat-expansion-panel [expanded]="step === 1"  hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<mat-icon>person</mat-icon>
+				Fert Bilgileri
+			</mat-panel-title>
+			<mat-panel-description>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+
+		<mat-card style="margin-bottom: 15px">
+			<table class="example-full-width" cellspacing="0">
+				<tr>
+					<td><mat-form-field class="example-full-width">
+						<input matInput placeholder="Ad" formControlName="name" name="name">
+					</mat-form-field></td>
+					<td><mat-form-field class="example-full-width">
+						<input matInput placeholder="Soyad" formControlName="surname" name="surname">
+					</mat-form-field></td>
+				</tr>
+				<tr>
+					<td><mat-form-field class="example-full-width">
+						<input matInput placeholder="TC" maxlength="11">
+					</mat-form-field></td>
+					&lt;!&ndash;<td><mat-form-field>
+						<input [value]="date.value" matInput [matDatepicker]="picker" placeholder="Doğum Tarihi">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+					</mat-form-field></td>&ndash;&gt;
+				</tr></table>
+			<mat-form-field>
+				<mat-select placeholder="Hane halkı sorumlusuna yakınlığı?">
+					<mat-option value="Hane halkı sorumlusu(Referans kişi)">Hane halkı sorumlusu(Referans kişi)</mat-option>
+					<mat-option value="Eşi">Eşi</mat-option>
+					<mat-option value="Oğlu/Kızı">Oğlu/Kızı</mat-option>
+					<mat-option value="Babası/Annesi">Babası/Annesi</mat-option>
+					<mat-option value="Kayınpederi/Kayınvalidesi">Kayınpederi/Kayınvalidesi</mat-option>
+					<mat-option value="Damadı/Gelin">Damadı/Gelini</mat-option>
+					<mat-option value="Kardeşi">Kardeşi</mat-option>
+					<mat-option value="Torunu">Torunu</mat-option>
+					<mat-option value="Diğer Akrabası">Diğer Akrabası</mat-option>
+					<mat-option value="Evde kalan hizmetli">Evde kalan hizmetli</mat-option>
+					<mat-option value="Akraba olmayanlar">Akraba olmayanlar</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-card>
+		<mat-card style="margin-bottom: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Herhangi bir engellilik durumunuz var mı?">
+					<mat-option value="Yok">Yok</mat-option>
+					<mat-option value="Engelli ama raporu yok">Engelli ama raporu yok</mat-option>
+					<mat-option value="Engelli ve raporu var">Engelli ve raporu var</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Herhangi bir engellilik durumunuz varsa Sağlık Raporunda yazan derecesi(%) nedir?">
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Engellilik durumunuza ilişkin Sağlık Raporunuzda 'Ağır Engelli' ifadesi yer alıyor mu?">
+					<mat-option value="Evet">Evet</mat-option>
+					<mat-option value="Hayır">Hayır</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Engellilik durumunuz çalışmanıza engel mi?">
+					<mat-option value="Hayır, çalışmama engel değil">Hayır, çalışmama engel değil</mat-option>
+					<mat-option value="Çalışmama engel olabilir">Çalışmama engel olabilir</mat-option>
+					<mat-option value="Çalışmama engel ve bakıma muhtacım">Çalışmama engel ve bakıma muhtacım</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Kronik ruhsal sağlık sorununuz var mı?">
+					<mat-option value="Evet">Evet</mat-option>
+					<mat-option value="Hayır">Hayır</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Sürekli ilaç tedavisi gördüğünüz/görmeniz gereken herhangi bir hastalığınız var mı?">
+					<mat-option value="Evet">Evet</mat-option>
+					<mat-option value="Hayır">Hayır</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="İlaç tedavisi gördüğünüz/görmeniz gereken hastalıkları belirtiniz" multiple>
+					<mat-option *ngFor="let d of disease" [value]="disease">{{d}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-card>
+		<mat-card style="margin-bottom: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Eğitim durumu?">
+					<mat-option value="Okur-Yazar değil">Okur-Yazar değil</mat-option>
+					<mat-option value="Okur-Yazar">Okur-Yazar</mat-option>
+					<mat-option value="İlkokul mezunu(5 yıl)">İlkokul mezunu(5 yıl)</mat-option>
+					<mat-option value="İlkokul terk">İlkokul terk</mat-option>
+					<mat-option value="İlköğretim mezunu (8 yıl)">İlköğretim mezunu (8 yıl)</mat-option>
+					<mat-option value="İlköğretim terk">İlköğretim terk</mat-option>
+					<mat-option value="Ortaokul mezunu">Ortaokul mezunu</mat-option>
+					<mat-option value="Ortaokul terk">Ortaokul terk</mat-option>
+					<mat-option value="Lise mezunu">Lise mezunu</mat-option>
+					<mat-option value="Lise terk">Lise terk</mat-option>
+					<mat-option value="2-3 yıllık yüksekokul mezunu">2-3 yıllık yüksekokul mezunu</mat-option>
+					<mat-option value="Yüksekokul terk">Yüksekokul terk</mat-option>
+					<mat-option value="Üniversite mezunu">Üniversite mezunu</mat-option>
+					<mat-option value="Üniversite terk">Üniversite terk</mat-option>
+					<mat-option value="Y. lisans, doktora mezunu">Y. lisans, doktora mezunu</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Bir öğrenim kurumuna devam ediyor musunuz?">
+					<mat-option value="Evet">Evet</mat-option>
+					<mat-option value="Hayır">Hayır</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Öğrenci ise devam ettiği okul? (Bu soruyu cevaplayanlar için 14. soruya geçiniz)">
+					<mat-option value="Anaokul">Anaokul</mat-option>
+					<mat-option value="İlköğretim">İlköğretim</mat-option>
+					<mat-option value="Lise">Lise</mat-option>
+					<mat-option value="Üniversite">Üniversite</mat-option>
+					<mat-option value="Yüksekokul">Yüksekokul</mat-option>
+					<mat-option value="Yüksek lisans, doktora">Yüksek lisans, doktora</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-card>
+		<mat-expansion-panel style="margin-bottom: 15px">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Zorunlu temel eğitimini tamamlamamışsanız, sebebini belirtiniz
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+				<tr>
+					<mat-selection-list placeholder="Zorunlu temel eğitimini tamamlamamışsanız, sebebini belirtiniz.">
+						<mat-list-option *ngFor="let causations of causation" [value]="causation">
+							{{causations}}
+						</mat-list-option>
+					</mat-selection-list>
+				</tr>
+				<tr>
+					<mat-form-field class="example-full-width">
+						<input matInput placeholder="Diğer (Belirtiniz)">
+					</mat-form-field>
+				</tr>
+		</mat-expansion-panel>
+		<mat-card style="margin-bottom: 15px"><mat-form-field>
+			<mat-select placeholder="Medeni durumunuz?">
+				<mat-option value="Hiç evlenmemiş">Hiç evlenmemiş</mat-option>
+				<mat-option value="Evli (Eşi ile aynı evde)">Evli (Eşi ile aynı evde)</mat-option>
+				<mat-option value="Evli fakat eşi/eşini terk etmiş">Evli fakat eşi/eşini terk etmiş</mat-option>
+				<mat-option value="Evli fakat eşi cezaevinde/tutukevinde">Evli fakat eşi cezaevinde/tutukevinde</mat-option>
+				<mat-option value="Evli fakat eşi askerde">Evli fakat eşi askerde</mat-option>
+				<mat-option value="Evli fakat eşi uzakta çalışıyor">Evli fakat eşi uzakta çalışıyor</mat-option>
+				<mat-option value="Dul (Eşi ölmüş)">Dul (Eşi ölmüş)</mat-option>
+				<mat-option value="Boşanmış">Boşanmış</mat-option>
+				<mat-option value="Diğer">Diğer</mat-option>
+			</mat-select>
+		</mat-form-field></mat-card>
+		<mat-card style="margin-bottom: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Son beş yıl içinde şu anda yaşadığınız yerleşim yerine göç ile mi geldiniz? (Sadece son beş yıl içerisinde göç edenler için evet cevabı işaretlenecektir)">
+					<mat-option value="Evet">Evet</mat-option>
+					<mat-option value="Hayır">Hayır</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Hangi yılda göç ettiniz?">
+					<input matInput>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Yaşadığınız yerleşim yerine nereden göç ettiniz? ()">
+					<mat-option value="Aynı şehir içinde başka belde/köyden">Aynı şehir içinde başka belde/köyden</mat-option>
+					<mat-option value="Aynı şehir içinde başka bir ilçeden">Aynı şehir içinde başka bir ilçeden</mat-option>
+					<mat-option value="Şehir dışından">Şehir dışından</mat-option>
+					<mat-option value="Ülke dışından">Ülke dışından</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Neden göç ettiniz?" multiple>
+					<mat-option *ngFor="let d of immigration" [value]="immigration">{{d}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Aşağıdaki durumlardan herhangi biri sizin için geçerli mi?" multiple>
+					<mat-option *ngFor="let d of immigrationCause" [value]="immigrationCause">{{d}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-card>
+		<mat-card style="margin-bottom: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Son bir hafta içinde ücretli ya da ücretsiz olarak bir işte çalıştınız mı?">
+					<mat-option value="Evet çalıştım, işle ilgim sürüyor">Evet çalıştım, işle ilgim sürüyor</mat-option>
+					<mat-option value="Hayır, çalışmadım">Hayır, çalışmadım</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Çalışmakta olduğunuz sektör?">
+					<mat-option value="Tarım, ormancılık ve balıkçılık">Tarım, ormancılık ve balıkçılık</mat-option>
+					<mat-option value="Madencilik ve taş ocakçılığı">Madencilik ve taş ocakçılığı</mat-option>
+					<mat-option value="Elektrik, gaz, buhar, su ve kanalizasyon">Elektrik, gaz, buhar, su ve kanalizasyon</mat-option>
+					<mat-option value="İnşaat">İnşaat</mat-option>
+					<mat-option value="Toptan ve perakende ticaret">Toptan ve perakende ticaret</mat-option>
+					<mat-option value="Ulaştırma ve depolama">Ulaştırma ve depolama</mat-option>
+					<mat-option value="Konaklama ve yiyecek hizmetli faaliyetleri">Konaklama ve yiyecek hizmetli faaliyetleri</mat-option>
+					<mat-option value="Bilgi ve iletişim">Bilgi ve iletişim</mat-option>
+					<mat-option value="Finans ve sigorta faaliyetleri">Finans ve sigorta faaliyetleri</mat-option>
+					<mat-option value="Gayrimenkul faaliyetler">Gayrimenkul faaliyetler</mat-option>
+					<mat-option value="Mesleki, bilimsel ve teknik faaliyetler">Mesleki, bilimsel ve teknik faaliyetler</mat-option>
+					<mat-option value="İdari ve destek hizmet faaliyetleri">İdari ve destek hizmet faaliyetleri</mat-option>
+					<mat-option value="Kamu yönetimi ve savunma">Kamu yönetimi ve savunma</mat-option>
+					<mat-option value="Eğitim">Eğitim</mat-option>
+					<mat-option value="İnsan sağlığı ve sosyal hizmet faaliyetleri">İnsan sağlığı ve sosyal hizmet faaliyetleri</mat-option>
+					<mat-option value="Kültür, sanat, eğlence, dinlence ve spor">Kültür, sanat, eğlence, dinlence ve spor</mat-option>
+					<mat-option value="Diğer toplumsal hizmetler">Diğer toplumsal hizmetler</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Çalıştığınız işteki durumunuz?">
+					<mat-option value="Ücretli/Maaşl">Ücretli/Maaşlı</mat-option>
+					<mat-option value="Yevmiyeli">Yevmiyeli</mat-option>
+					<mat-option value="İşveren">İşveren</mat-option>
+					<mat-option value="Kendi hesabına">Kendi hesabına</mat-option>
+					<mat-option value="Ücretsiz aile işçisi">Ücretsiz aile işçisi</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-card>
+		<mat-card style="margin-bottom: 15px">
+			<tr>
+				<label>Çalıştığınız işyerinin durumu nedir? (Bu soruyu cevaplayanlar için 24. soruya geçiniz)</label>
+				<mat-radio-group class="example-radio-group">
+					<mat-radio-button class="example-radio-button" value="Devlet/Kamu">Devlet/Kamu</mat-radio-button>
+					<mat-radio-button class="example-radio-button" value="Özel">Özel</mat-radio-button>
+				</mat-radio-group>
+			</tr>
+			<tr>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Diğer (Belirtiniz)">
+				</mat-form-field>
+			</tr>
+		</mat-card>
+
+		<mat-card style="margin-bottom: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Çalışmıyorsanız durumu nasıl tanımlarsınız? (Soruya 2-7 arasında cevap verenler için 21. soruyu cevapladıktan sonra 24. soruya geçilecektir)">
+					<mat-option value="Evet">İşsizim, iş arıyorum</mat-option>
+					<mat-option value="Hayır">Ev kadını/kızı</mat-option>
+					<mat-option value="Hayır">Öğrenci</mat-option>
+					<mat-option value="Hayır">Mevsimlik çalışan işçi vb.</mat-option>
+					<mat-option value="Hayır">Gelir/Kira vb. gelirim var</mat-option>
+					<mat-option value="Hayır">fiziksel durumum çalışmaya uygun değil</mat-option>
+					<mat-option value="Hayır">Diğer(Askerde, hapiste vb.)</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Uygun bir iş teklifi almanız durumunda çalışır mısınız?">
+					<mat-option value="Evet">Evet</mat-option>
+					<mat-option value="Hayır">Hayır</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Son bir yıl içinde kaç aydır işsizsiniz?">
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="Herhangi bir mesleğe yönelik olarak aşağıdaki belgelerden birine sahip misiniz?" multiple>
+					<mat-option *ngFor="let d of hasDocument" [value]="hasDocument">{{d}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-card>
+		<mat-card style="margin-bottom: 15px"><mat-form-field>
+			<mat-select placeholder="Engellilik haricinde bakıma muhtaç (öz bakımını yapamayan, çocuk, yaşlı, kronik hastalık vb.) durumunda mısınız?">
+				<mat-option value="Evet">Evet</mat-option>
+				<mat-option value="Hayır">Hayır</mat-option>
+			</mat-select>
+		</mat-form-field></mat-card>
+
+		&lt;!&ndash;<mat-form-field>
+			<mat-select placeholder="Engellilik haricinde bakıma muhtaç (öz bakımını yapamayan, çocuk, yaşlı, kronik hastalık vb.) durumunda mısınız?">
+				<mat-option value="Evet">Evet</mat-option>
+				<mat-option value="Hayır">Hayır</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select placeholder="Engellilik haricinde bakıma muhtaç (öz bakımını yapamayan, çocuk, yaşlı, kronik hastalık vb.) durumunda mısınız?">
+				<mat-option value="Evet">Evet</mat-option>
+				<mat-option value="Hayır">Hayır</mat-option>
+			</mat-select>
+		</mat-form-field>&ndash;&gt;
+
+		<mat-action-row>
+			&lt;!&ndash;<button mat-button color="warn" (click)="prevStep()">Previous</button>&ndash;&gt;
+			<button mat-stroked-button (click)="nextStep()" class="form-control">Bitti</button>
+		</mat-action-row>
+	</mat-expansion-panel>
+
+	</form>
+
+	<mat-expansion-panel style="margin-top: 15px">
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Haneye Yönelik Sorulacak Sorular
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+			<mat-card>
+				<div>
+					<tr>
+						<label ><b>31)</b> Oturduğunuz konutun türü nedir? </label>
+						<mat-radio-group class="example-radio-group">
+							<mat-radio-button class="example-radio-button" value="Çadır/Baraka">Çadır/Baraka
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button"
+											  value="Gecekondu (Sağlıksız oturulamayacak durumda)">Gecekondu (Sağlıksız
+								oturulamayacak durumda)
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Müstakil ev">Müstakil ev
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Apartman dairesi (Normal kat)">Apartman
+								dairesi (Normal kat)
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Apartman dairesi (Zemin)">Apartman dairesi
+								(Zemin)
+							</mat-radio-button>
+						</mat-radio-group>
+					</tr>
+					<tr>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Diğer (Belirtiniz)">
+						</mat-form-field>
+					</tr>
+				</div>
+			</mat-card>
+			<br>
+			<mat-card>
+				<div>
+
+					<tr>
+						<label><b>32</b> Oturduğunuz evin mülkiyet durumu nedir? (Kendi evimiz, Kira
+							ödemeden
+							kullanılıyor&ndash;&gt;33, Kira, Lojman &ndash;&gt;32.1)</label>
+						<mat-radio-group class="example-radio-group">
+							<mat-radio-button class="example-radio-button" value="Kendi evimiz">Kendi evimiz
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button"
+											  value="Kira ödemeden kullanılıyor">Kira
+								ödemeden kullanılıyor
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Kira">Kira
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Lojman">Lojman
+							</mat-radio-button>
+						</mat-radio-group>
+					</tr>
+					<tr>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Diğer (Belirtiniz)">
+						</mat-form-field>
+					</tr>
+				</div>
+			</mat-card>
+			<br>
+			<mat-card>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Aylık ne kadar kira ödüyorsunuz? (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput
+						   placeholder="Bulunduğunuz semtte böyle bir evin yaklaşık aylık kira bedeli ne kadardır? (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput
+						   placeholder="Mutfak, tuvalet banyo hariç, oturduğunuz evde (salon dahil) kaç tane oda vardır? (TL)">
+				</mat-form-field>
+			</mat-card>
+			<br>
+			<mat-card>
+				<mat-form-field>
+					<mat-select placeholder="Evde ısınmada kullanılan temel yakıt türü nedir?">
+						<mat-option value="LPG (Tüp Gaz)">LPG (Tüp Gaz)</mat-option>
+						<mat-option value="Doğalgaz">Doğalgaz</mat-option>
+						<mat-option value="Elektrik">Elektrik</mat-option>
+						<mat-option value="Odun/Kömür">Odun/Kömür</mat-option>
+						<mat-option value="Tezek">Tezek</mat-option>
+						<mat-option value="Diğer">Diğer</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-select placeholder="Oturduğunuz konutta aşağıdakilerden hangisi mevcuttur?" multiple>
+						<mat-option *ngFor="let d of infrastructor" [value]="infrastructor">{{d}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</mat-card>
+			<br>
+			&lt;!&ndash;
+                        <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Aşağıdaki eşyalardan hanenizde kullandıklarınızın sayısını belirtiniz.
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Tüplü Televizyon">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="LCD/Plazma Televizyon">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Video/VCD/DVD/CD çalar">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Otomatik çamaşır makinesi">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bulaşık makinesi">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Buzdolabı">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Derin dondurucu">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Ev telefonu">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Cep telefonu">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Uydu anteni">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bilgisayar">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="İnternet">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Mikrodalga fırın">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Halı yıkama makinesi">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Klima">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Normal/mini fırın">
+                                            </mat-form-field>
+                                        </div>
+                                    </mat-expansion-panel>
+
+                        <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Aşağıdaki harcama türleri için, aldığınız yardımlar dışında ortalama ne kadar harcama (satın alış) yaptınız? (Görüşmeci yıllık veya aylık hangisini ifade ediyorsa onu yazınız)
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th class="col-md-4">Harcama türü</th>
+                                                <th class="col-md-4">Aylık TL</th>
+                                                <th class="col-md-4">Son bir yıllık TL</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Gıda</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Giyim</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kira</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Yakacak (odun kömür, doğalgaz)</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eğitim (okul, kurs vb. ücretleri, kırtasiye malzemeleri vb.)</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sağlık</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Haberleşme (tel, internet...)</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Temizlik malzemeleri</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ulaşım</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sigara</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Su-elektrik-tüpgaz</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eğlence/kültür/sanat</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lokanta ve otel</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mobilya, ev aletleri ve bakım hizmetleri</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alkollü içecek</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Çeşitli mal ve hizmetler</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </mat-expansion-panel>
+                        &ndash;&gt;
+			&lt;!&ndash; 	<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Aşağıda yer almakta olan gerekli bilgileri doldurunuz.</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>Aşağıdaki eşyalardan hanenizde kullandıklarınızın sayısını belirtiniz. (Yoksa 0 yaznız.)</td>
+                                <td>Aşağıdaki harcama türleri için, aldığınız yardımlar dışında ortalama ne kadar harcama (satın
+                                    alış) yaptınız? (Görüşmeci yıllık veya aylık hangisini ifade ediyorsa onu yazınız)
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Tüplü Televizyon">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="LCD/Plazma Televizyon">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Video/VCD/DVD/CD çalar">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Otomatik çamaşır makinesi">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bulaşık makinesi">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Buzdolabı">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Derin dondurucu">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Ev telefonu">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Cep telefonu">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Uydu anteni">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bilgisayar">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="İnternet">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Mikrodalga fırın">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Halı yıkama makinesi">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Klima">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Normal/mini fırın">
+                                            </mat-form-field>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-4">Harcama türü</th>
+                                            <th class="col-md-4">Aylık TL</th>
+                                            <th class="col-md-4">Son bir yıllık TL</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Gıda</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giyim</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kira</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Yakacak (odun kömür, doğalgaz)</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Eğitim (okul, kurs, kırtasiye malzemeleri vb.)</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sağlık</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Haberleşme (tel, internet...)</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Temizlik malzemeleri</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ulaşım</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sigara</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Su-elektrik-tüpgaz</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Eğlence/kültür/sanat</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lokanta ve otel</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobilya, ev aletleri ve bakım hizmetleri</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alkollü içecek</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Çeşitli mal ve hizmetler</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </mat-expansion-panel>&ndash;&gt;
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>Aşağıdaki eşyalardan hanenizde kullandıklarınızın sayısını belirtiniz. (Yoksa 0 yazınız.</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Tüplü Televizyon">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="LCD/Plazma Televizyon">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Video/VCD/DVD/CD çalar">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Otomatik çamaşır makinesi">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Bulaşık makinesi">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Buzdolabı">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Derin dondurucu">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Cep telefonu">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Uydu anteni">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Bilgisayar">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Normal/mini fırın">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="İnternet">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Ev telefonu">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Mikrodalga fırın">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Halı yıkama makinesi">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Klima">
+							</mat-form-field>
+						</tr>
+					</td>
+				</table>
+			</mat-expansion-panel><br>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Aşağıdaki harcama türleri için, aldığınız yardımlar dışında ortalama ne kadar harcama (satın
+						alış) yaptınız? (Görüşmeci yıllık veya aylık hangisini ifade ediyorsa onu yazınız)
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+					<thead>
+					<tr>
+						<th class="col-md-4">Harcama türü</th>
+						<th class="col-md-4">Aylık TL</th>
+						<th class="col-md-4">Son bir yıllık TL</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>Gıda</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Giyim</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Kira</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Yakacak (odun kömür, doğalgaz)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Eğitim (okul, kurs, kırtasiye malzemeleri vb.)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Sağlık</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Haberleşme (tel, internet...)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Temizlik malzemeleri</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ulaşım</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Sigara</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Su-elektrik-tüpgaz</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Eğlence/kültür/sanat</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Lokanta ve otel</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Mobilya, ev aletleri ve bakım hizmetleri</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Alkollü içecek</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Çeşitli mal ve hizmetler</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</mat-expansion-panel><br>
+			<mat-card>
+				<label><b>Sağlık hizmetlerinden faydalanmakta zorluk yaşıyorsanız, bunun en önemli nedeni
+					nedir?</b></label>
+				<table>
+					<tr>
+						<mat-radio-group class="example-radio-group">
+							<mat-radio-button class="example-radio-button" value="Mali gücüm yok">Mali gücüm yok
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Tedavi yeri uzakta">Tedavi yeri uzakta
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Zamanım yoktu">Zamanım yoktu
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Doktora ulaşamadım">Doktora ulaşamadım
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="İlaç ve diğer tıbbi malzemelere ulaşamadım">
+								İlaç ve diğer tıbbi malzemelere ulaşamadım
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button"
+											  value="Bulunduğum yerde/mahallede sağlık ocağı/aile hekimi/toplum sağlık merkezi/aile sağlığı merkezi yok">
+								Bulunduğum yerde/mahallede sağlık ocağı/aile hekimi/toplum sağlık merkezi/aile sağlığı merkezi
+								yok
+							</mat-radio-button>
+
+						</mat-radio-group>
+					</tr>
+					<tr>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Diğer (Belirtiniz)">
+						</mat-form-field>
+					</tr>
+				</table>
+			</mat-card><br>
+			<mat-card>
+				<label><b>Yaşamınızı aşağıdaki düzeylerde devam ettirebilmek için aylık hanehalkı geliriniz kaç TL olmalıdır?</b></label>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Asgari (Kıt kanaat) düzeyde bir yaşam için (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Normal bir yaşam için (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="İyi bir yaşam için (TL)">
+				</mat-form-field>
+			</mat-card><br>
+			<mat-card>
+				<mat-form-field>
+					<mat-select placeholder="Hiç afet yaşadınız mı? (Hayır->47)">
+						<mat-option value="Evet">Evet</mat-option>
+						<mat-option value="Hayır">Hayır</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</mat-card><br>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Afetten dolayı yitirdiğiniz varlıklarınız nelerdir? Varsa elinizdeki hasar tespit raporuna göre belirtiniz.
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+					<thead>
+					<tr>
+						<th class="col-md-4">Varlık türü</th>
+						<th class="col-md-4">Miktar</th>
+						<th class="col-md-4">Bedel TL</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>Konut (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Tarla (Dönüm)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Bağ-Bahçe (m2)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Sera (m2)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Üretim araçları (Kamyon, Traktör vs. (Adet))</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ev Eşyası (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ürün (Mahsul)(Kilogram)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ahır, Kümes (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Küçükbaş Hayvan (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Büyükbaş Hayvan (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Kümes Hayvanı (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Dğer</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</mat-expansion-panel><br>
+	</mat-expansion-panel>
+
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				<mat-icon>rate_review</mat-icon>
+				Hane Değerlendirme Soruları
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+	</mat-expansion-panel>
+
+</mat-accordion>-->
+<!--<mat-card>
+	<mat-form-field>
+		<input [value]="date.value" matInput  disabled placeholder="Denetleme Tarihi">
+	</mat-form-field>
+</mat-card>-->
+
+
+<mat-card style="margin-top: 25px">
+	<mat-form-field>
+		<mat-select placeholder="Denetleme yapılacak haneyi seçiniz">
+			<div *ngFor="let house of house"
+				 [class.selected]="house === selectedHouse"
+				 (click)="onSelect(house)">
+					<mat-option>
+						<span class="badge">{{house.id}}</span> {{house.houseAddress}}
+					</mat-option>
+			</div>
+		</mat-select>
+	</mat-form-field>
+</mat-card>
+
+
+<mat-horizontal-stepper style="margin-top: 50px">
+	<mat-step>
+		<ng-template matStepLabel>Konut Bilgileri</ng-template>
+		<form [formGroup]="houseRegForm">
+			<!--<mat-card>
+				<table class="example-full-width" cellspacing="0">
+				<tr>
+					<td>
+						<mat-form-field class="example-full-width">
+							<span matPrefix>+0 &nbsp;</span>
+							<input type="tel" matInput placeholder="Ev Telefonu" name="homePhone" formControlName="homePhone">
+							<mat-icon matSuffix>mode_edit</mat-icon>
+						</mat-form-field>
+					</td>
+					<td>
+						<mat-form-field class="example-full-width">
+							<span matPrefix>+90 &nbsp;</span>
+							<input type="tel" matInput placeholder="Cep Telefonu" name="cellPhone" formControlName="cellPhone">
+							<mat-icon matSuffix>mode_edit</mat-icon>
+						</mat-form-field>
+					</td>
+				</tr>
+				</table>
+				<mat-form-field class="example-full-width">
+					<textarea matInput placeholder="Hane Adresi" formControlName="houseAddress" name="houseAddress"></textarea>
+				</mat-form-field>
+			</mat-card>
+			<div style="float: right; margin-top: 15px">
+				<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button matStepperNext class="form-control">Kaydet ve İlerle</button>
+			</div>-->
+			<mat-card style="margin-top: 15px">
+				<div *ngIf="selectedHouse">
+					<!--<h2>{{selectedHouse.houseAddress | uppercase}} - Adresli hane detayları</h2>-->
+					<table class="example-full-width" cellspacing="0">
+						<tr>
+							<td>
+								<div><span>Adres: </span>{{selectedHouse.houseAddress}}</div>
+							</td>
+							<td>
+								<div><span>Cep Telefonu: </span>{{selectedHouse.cellPhone}}</div>
+							</td>
+							<td>
+								<div><span>Ev Telefounu: </span>{{selectedHouse.homePhone}}</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</mat-card>
+			<div style="float: right; margin-top: 15px">
+				<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button matStepperNext class="form-control">İlerle</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Fert Bilgileri</ng-template>
+
+		<form [formGroup]="form">
+			<div *ngIf="form.controls.published.value" style="margin-top: 15px">
+
+				<div formArrayName="credentials" *ngFor="let creds of form.controls.credentials?.value; let i = index"
+					 style="margin-top: 15px">
+					<mat-expansion-panel>
+						<mat-expansion-panel-header>
+							<mat-panel-title>Ailede yaşayan {{i + 1}}. Fert Bilgileri</mat-panel-title>
+						</mat-expansion-panel-header>
+						<form [formGroup]="personRegForm" (submit)="personFormControl()">
+							<mat-card style="margin-bottom: 15px">
+								<table class="example-full-width" cellspacing="0">
+									<tr>
+										<td>
+											<mat-form-field class="example-full-width">
+												<input matInput placeholder="1) Ad" formControlName="name"
+													   name="name">
+											</mat-form-field>
+										</td>
+										<td>
+											<mat-form-field class="example-full-width">
+												<input matInput placeholder="2) Soyad" formControlName="surname"
+													   name="surname">
+											</mat-form-field>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<mat-form-field class="example-full-width">
+												<input type="number" matInput placeholder="3) TC" maxlength="11">
+											</mat-form-field>
+										</td>
+										<td>
+											<mat-form-field>
+												<input [value]="date.value" matInput [matDatepicker]="picker"
+													   placeholder="Doğum Tarihi">
+												<mat-datepicker-toggle matSuffix
+																	   [for]="picker"></mat-datepicker-toggle>
+												<mat-datepicker #picker></mat-datepicker>
+											</mat-form-field>
+										</td>
+									</tr>
+								</table>
+								<mat-form-field>
+									<mat-select placeholder="Hane halkı sorumlusuna yakınlığı?">
+										<mat-option value="Hane halkı sorumlusu(Referans kişi)">Hane halkı
+											sorumlusu(Referans kişi)
+										</mat-option>
+										<mat-option value="Eşi">Eşi</mat-option>
+										<mat-option value="Oğlu/Kızı">Oğlu/Kızı</mat-option>
+										<mat-option value="Babası/Annesi">Babası/Annesi</mat-option>
+										<mat-option value="Kayınpederi/Kayınvalidesi">Kayınpederi/Kayınvalidesi
+										</mat-option>
+										<mat-option value="Damadı/Gelin">Damadı/Gelini</mat-option>
+										<mat-option value="Kardeşi">Kardeşi</mat-option>
+										<mat-option value="Torunu">Torunu</mat-option>
+										<mat-option value="Diğer Akrabası">Diğer Akrabası</mat-option>
+										<mat-option value="Evde kalan hizmetli">Evde kalan hizmetli</mat-option>
+										<mat-option value="Akraba olmayanlar">Akraba olmayanlar</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-card style="margin-bottom: 15px">
+								<mat-form-field>
+									<mat-select placeholder="Herhangi bir engellilik durumunuz var mı?">
+										<mat-option value="Yok">Yok</mat-option>
+										<mat-option value="Engelli ama raporu yok">Engelli ama raporu yok
+										</mat-option>
+										<mat-option value="Engelli ve raporu var">Engelli ve raporu var</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field class="example-full-width">
+									<input matInput
+										   placeholder="Herhangi bir engellilik durumunuz varsa Sağlık Raporunda yazan derecesi(%) nedir?">
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="Engellilik durumunuza ilişkin Sağlık Raporunuzda 'Ağır Engelli' ifadesi yer alıyor mu?">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Engellilik durumunuz çalışmanıza engel mi?">
+										<mat-option value="Hayır, çalışmama engel değil">Hayır, çalışmama engel
+											değil
+										</mat-option>
+										<mat-option value="Çalışmama engel olabilir">Çalışmama engel olabilir
+										</mat-option>
+										<mat-option value="Çalışmama engel ve bakıma muhtacım">Çalışmama engel ve
+											bakıma muhtacım
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Kronik ruhsal sağlık sorununuz var mı?">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="Sürekli ilaç tedavisi gördüğünüz/görmeniz gereken herhangi bir hastalığınız var mı?">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="İlaç tedavisi gördüğünüz/görmeniz gereken hastalıkları belirtiniz"
+										multiple>
+										<mat-option *ngFor="let d of disease" [value]="disease">{{d}}</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-card style="margin-bottom: 15px">
+								<mat-form-field>
+									<mat-select placeholder="Eğitim durumu?">
+										<mat-option value="Okur-Yazar değil">Okur-Yazar değil</mat-option>
+										<mat-option value="Okur-Yazar">Okur-Yazar</mat-option>
+										<mat-option value="İlkokul mezunu(5 yıl)">İlkokul mezunu(5 yıl)</mat-option>
+										<mat-option value="İlkokul terk">İlkokul terk</mat-option>
+										<mat-option value="İlköğretim mezunu (8 yıl)">İlköğretim mezunu (8 yıl)
+										</mat-option>
+										<mat-option value="İlköğretim terk">İlköğretim terk</mat-option>
+										<mat-option value="Ortaokul mezunu">Ortaokul mezunu</mat-option>
+										<mat-option value="Ortaokul terk">Ortaokul terk</mat-option>
+										<mat-option value="Lise mezunu">Lise mezunu</mat-option>
+										<mat-option value="Lise terk">Lise terk</mat-option>
+										<mat-option value="2-3 yıllık yüksekokul mezunu">2-3 yıllık yüksekokul
+											mezunu
+										</mat-option>
+										<mat-option value="Yüksekokul terk">Yüksekokul terk</mat-option>
+										<mat-option value="Üniversite mezunu">Üniversite mezunu</mat-option>
+										<mat-option value="Üniversite terk">Üniversite terk</mat-option>
+										<mat-option value="Y. lisans, doktora mezunu">Y. lisans, doktora mezunu
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Bir öğrenim kurumuna devam ediyor musunuz?">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="Öğrenci ise devam ettiği okul? (Bu soruyu cevaplayanlar için 14. soruya geçiniz)">
+										<mat-option value="Anaokul">Anaokul</mat-option>
+										<mat-option value="İlköğretim">İlköğretim</mat-option>
+										<mat-option value="Lise">Lise</mat-option>
+										<mat-option value="Üniversite">Üniversite</mat-option>
+										<mat-option value="Yüksekokul">Yüksekokul</mat-option>
+										<mat-option value="Yüksek lisans, doktora">Yüksek lisans, doktora
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-expansion-panel style="margin-bottom: 15px">
+								<mat-expansion-panel-header>
+									<mat-panel-title>
+										Zorunlu temel eğitimini tamamlamamışsanız, sebebini belirtiniz
+									</mat-panel-title>
+								</mat-expansion-panel-header>
+								<tr>
+									<mat-selection-list
+										placeholder="Zorunlu temel eğitimini tamamlamamışsanız, sebebini belirtiniz.">
+										<mat-list-option *ngFor="let causations of causation" [value]="causation">
+											{{causations}}
+										</mat-list-option>
+									</mat-selection-list>
+								</tr>
+								<tr>
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Diğer (Belirtiniz)">
+									</mat-form-field>
+								</tr>
+							</mat-expansion-panel>
+							<mat-card style="margin-bottom: 15px">
+								<mat-form-field>
+									<mat-select placeholder="Medeni durumunuz?">
+										<mat-option value="Hiç evlenmemiş">Hiç evlenmemiş</mat-option>
+										<mat-option value="Evli (Eşi ile aynı evde)">Evli (Eşi ile aynı evde)
+										</mat-option>
+										<mat-option value="Evli fakat eşi/eşini terk etmiş">Evli fakat eşi/eşini
+											terk etmiş
+										</mat-option>
+										<mat-option value="Evli fakat eşi cezaevinde/tutukevinde">Evli fakat eşi
+											cezaevinde/tutukevinde
+										</mat-option>
+										<mat-option value="Evli fakat eşi askerde">Evli fakat eşi askerde
+										</mat-option>
+										<mat-option value="Evli fakat eşi uzakta çalışıyor">Evli fakat eşi uzakta
+											çalışıyor
+										</mat-option>
+										<mat-option value="Dul (Eşi ölmüş)">Dul (Eşi ölmüş)</mat-option>
+										<mat-option value="Boşanmış">Boşanmış</mat-option>
+										<mat-option value="Diğer">Diğer</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-card style="margin-bottom: 15px">
+								<mat-form-field>
+									<mat-select
+										placeholder="Son beş yıl içinde şu anda yaşadığınız yerleşim yerine göç ile mi geldiniz? (Sadece son beş yıl içerisinde göç edenler için evet cevabı işaretlenecektir)">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Hangi yılda göç ettiniz?">
+										<input matInput>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Yaşadığınız yerleşim yerine nereden göç ettiniz? ()">
+										<mat-option value="Aynı şehir içinde başka belde/köyden">Aynı şehir içinde
+											başka belde/köyden
+										</mat-option>
+										<mat-option value="Aynı şehir içinde başka bir ilçeden">Aynı şehir içinde
+											başka bir ilçeden
+										</mat-option>
+										<mat-option value="Şehir dışından">Şehir dışından</mat-option>
+										<mat-option value="Ülke dışından">Ülke dışından</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Neden göç ettiniz?" multiple>
+										<mat-option *ngFor="let d of immigration" [value]="immigration">{{d}}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="Aşağıdaki durumlardan herhangi biri sizin için geçerli mi?"
+										multiple>
+										<mat-option *ngFor="let d of immigrationCause" [value]="immigrationCause">
+											{{d}}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-card style="margin-bottom: 15px">
+								<mat-form-field>
+									<mat-select
+										placeholder="Son bir hafta içinde ücretli ya da ücretsiz olarak bir işte çalıştınız mı?">
+										<mat-option value="Evet çalıştım, işle ilgim sürüyor">Evet çalıştım, işle
+											ilgim sürüyor
+										</mat-option>
+										<mat-option value="Hayır, çalışmadım">Hayır, çalışmadım</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Çalışmakta olduğunuz sektör?">
+										<mat-option value="Tarım, ormancılık ve balıkçılık">Tarım, ormancılık ve
+											balıkçılık
+										</mat-option>
+										<mat-option value="Madencilik ve taş ocakçılığı">Madencilik ve taş
+											ocakçılığı
+										</mat-option>
+										<mat-option value="Elektrik, gaz, buhar, su ve kanalizasyon">Elektrik, gaz,
+											buhar, su ve kanalizasyon
+										</mat-option>
+										<mat-option value="İnşaat">İnşaat</mat-option>
+										<mat-option value="Toptan ve perakende ticaret">Toptan ve perakende
+											ticaret
+										</mat-option>
+										<mat-option value="Ulaştırma ve depolama">Ulaştırma ve depolama</mat-option>
+										<mat-option value="Konaklama ve yiyecek hizmetli faaliyetleri">Konaklama ve
+											yiyecek hizmetli faaliyetleri
+										</mat-option>
+										<mat-option value="Bilgi ve iletişim">Bilgi ve iletişim</mat-option>
+										<mat-option value="Finans ve sigorta faaliyetleri">Finans ve sigorta
+											faaliyetleri
+										</mat-option>
+										<mat-option value="Gayrimenkul faaliyetler">Gayrimenkul faaliyetler
+										</mat-option>
+										<mat-option value="Mesleki, bilimsel ve teknik faaliyetler">Mesleki,
+											bilimsel ve teknik faaliyetler
+										</mat-option>
+										<mat-option value="İdari ve destek hizmet faaliyetleri">İdari ve destek
+											hizmet faaliyetleri
+										</mat-option>
+										<mat-option value="Kamu yönetimi ve savunma">Kamu yönetimi ve savunma
+										</mat-option>
+										<mat-option value="Eğitim">Eğitim</mat-option>
+										<mat-option value="İnsan sağlığı ve sosyal hizmet faaliyetleri">İnsan
+											sağlığı ve sosyal hizmet faaliyetleri
+										</mat-option>
+										<mat-option value="Kültür, sanat, eğlence, dinlence ve spor">Kültür, sanat,
+											eğlence, dinlence ve spor
+										</mat-option>
+										<mat-option value="Diğer toplumsal hizmetler">Diğer toplumsal hizmetler
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select placeholder="Çalıştığınız işteki durumunuz?">
+										<mat-option value="Ücretli/Maaşl">Ücretli/Maaşlı</mat-option>
+										<mat-option value="Yevmiyeli">Yevmiyeli</mat-option>
+										<mat-option value="İşveren">İşveren</mat-option>
+										<mat-option value="Kendi hesabına">Kendi hesabına</mat-option>
+										<mat-option value="Ücretsiz aile işçisi">Ücretsiz aile işçisi</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-card style="margin-bottom: 15px">
+								<tr>
+									<label>Çalıştığınız işyerinin durumu nedir? (Bu soruyu cevaplayanlar için 24.
+										soruya geçiniz)</label>
+									<mat-radio-group class="example-radio-group">
+										<mat-radio-button class="example-radio-button" value="Devlet/Kamu">
+											Devlet/Kamu
+										</mat-radio-button>
+										<mat-radio-button class="example-radio-button" value="Özel">Özel
+										</mat-radio-button>
+									</mat-radio-group>
+								</tr>
+								<tr>
+									<mat-form-field class="example-full-width">
+										<input matInput placeholder="Diğer (Belirtiniz)">
+									</mat-form-field>
+								</tr>
+							</mat-card>
+
+							<mat-card style="margin-bottom: 15px">
+								<mat-form-field>
+									<mat-select
+										placeholder="Çalışmıyorsanız durumu nasıl tanımlarsınız? (Soruya 2-7 arasında cevap verenler için 21. soruyu cevapladıktan sonra 24. soruya geçilecektir)">
+										<mat-option value="Evet">İşsizim, iş arıyorum</mat-option>
+										<mat-option value="Hayır">Ev kadını/kızı</mat-option>
+										<mat-option value="Hayır">Öğrenci</mat-option>
+										<mat-option value="Hayır">Mevsimlik çalışan işçi vb.</mat-option>
+										<mat-option value="Hayır">Gelir/Kira vb. gelirim var</mat-option>
+										<mat-option value="Hayır">fiziksel durumum çalışmaya uygun değil
+										</mat-option>
+										<mat-option value="Hayır">Diğer(Askerde, hapiste vb.)</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="Uygun bir iş teklifi almanız durumunda çalışır mısınız?">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+								<mat-form-field>
+									<input matInput placeholder="Son bir yıl içinde kaç aydır işsizsiniz?">
+								</mat-form-field>
+								<mat-form-field>
+									<mat-select
+										placeholder="Herhangi bir mesleğe yönelik olarak aşağıdaki belgelerden birine sahip misiniz?"
+										multiple>
+										<mat-option *ngFor="let d of hasDocument" [value]="hasDocument">{{d}}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+							<mat-card>
+								<mat-form-field>
+									<mat-select
+										placeholder="Engellilik haricinde bakıma muhtaç (öz bakımını yapamayan, çocuk, yaşlı, kronik hastalık vb.) durumunda mısınız?">
+										<mat-option value="Evet">Evet</mat-option>
+										<mat-option value="Hayır">Hayır</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</mat-card>
+
+							<!--<div style="float: right; margin-top: 15px">
+								&lt;!&ndash;<button mat-button color="warn" (click)="prevStep()">Previous</button>&ndash;&gt;
+								<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button
+										matStepperNext (click)="nextStep()" class="form-control">Kaydet ve ilerle
+								</button>
+							</div>-->
+						</form>
+					</mat-expansion-panel>
+				</div>
+
+				<div class="row row-no-padding row-col-separator-sm">
+					<div class="col-sm-1">
+						<button style="background: #4EAF47; color: #ffffff; margin-top: 15px" class="form-control"
+								(click)="addPerson()">
+							<mat-icon>add</mat-icon> Fert Ekle
+						</button>
+					</div>
+					<div class="col-sm-7">
+					</div>
+					<div class="col-sm-4">
+						<div style="float: right; margin-top: 15px">
+							<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button matStepperNext class="form-control">İlerle</button>
+						</div>
+					</div>
+				</div>
+				<div class="row row-no-padding row-col-separator-sm">
+					<div class="col-sm-5" style="margin-top: 15px"><mat-icon>warning</mat-icon>  Her fert için ayrı değerlendirme formu oluşturunuz</div>
+					<div class="col-sm-7"></div>
+				</div>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Haneye Yönelik Sorular</ng-template>
+		<mat-card>
+				<div>
+					<tr>
+						<label ><b>31)</b> Oturduğunuz konutun türü nedir? </label>
+						<mat-radio-group class="example-radio-group">
+							<mat-radio-button class="example-radio-button" value="Çadır/Baraka">Çadır/Baraka
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button"
+											  value="Gecekondu (Sağlıksız oturulamayacak durumda)">Gecekondu (Sağlıksız
+								oturulamayacak durumda)
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Müstakil ev">Müstakil ev
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Apartman dairesi (Normal kat)">Apartman
+								dairesi (Normal kat)
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Apartman dairesi (Zemin)">Apartman dairesi
+								(Zemin)
+							</mat-radio-button>
+						</mat-radio-group>
+					</tr>
+					<tr>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Diğer (Belirtiniz)">
+						</mat-form-field>
+					</tr>
+				</div>
+			</mat-card>
+			<br>
+			<mat-card>
+				<div>
+
+					<tr>
+						<label><b>32</b> Oturduğunuz evin mülkiyet durumu nedir? (Kendi evimiz, Kira
+							ödemeden
+							kullanılıyor-->33, Kira, Lojman -->32.1)</label>
+						<mat-radio-group class="example-radio-group">
+							<mat-radio-button class="example-radio-button" value="Kendi evimiz">Kendi evimiz
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button"
+											  value="Kira ödemeden kullanılıyor">Kira
+								ödemeden kullanılıyor
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Kira">Kira
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Lojman">Lojman
+							</mat-radio-button>
+						</mat-radio-group>
+					</tr>
+					<tr>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Diğer (Belirtiniz)">
+						</mat-form-field>
+					</tr>
+				</div>
+			</mat-card>
+			<br>
+			<mat-card>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Aylık ne kadar kira ödüyorsunuz? (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput
+						   placeholder="Bulunduğunuz semtte böyle bir evin yaklaşık aylık kira bedeli ne kadardır? (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput
+						   placeholder="Mutfak, tuvalet banyo hariç, oturduğunuz evde (salon dahil) kaç tane oda vardır? (TL)">
+				</mat-form-field>
+			</mat-card>
+			<br>
+			<mat-card>
+				<mat-form-field>
+					<mat-select placeholder="Evde ısınmada kullanılan temel yakıt türü nedir?">
+						<mat-option value="LPG (Tüp Gaz)">LPG (Tüp Gaz)</mat-option>
+						<mat-option value="Doğalgaz">Doğalgaz</mat-option>
+						<mat-option value="Elektrik">Elektrik</mat-option>
+						<mat-option value="Odun/Kömür">Odun/Kömür</mat-option>
+						<mat-option value="Tezek">Tezek</mat-option>
+						<mat-option value="Diğer">Diğer</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-select placeholder="Oturduğunuz konutta aşağıdakilerden hangisi mevcuttur?" multiple>
+						<mat-option *ngFor="let d of infrastructor" [value]="infrastructor">{{d}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</mat-card>
+			<br>
+			<!--
+                        <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Aşağıdaki eşyalardan hanenizde kullandıklarınızın sayısını belirtiniz.
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Tüplü Televizyon">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="LCD/Plazma Televizyon">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Video/VCD/DVD/CD çalar">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Otomatik çamaşır makinesi">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bulaşık makinesi">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Buzdolabı">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Derin dondurucu">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Ev telefonu">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Cep telefonu">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Uydu anteni">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bilgisayar">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="İnternet">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Mikrodalga fırın">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Halı yıkama makinesi">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Klima">
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Normal/mini fırın">
+                                            </mat-form-field>
+                                        </div>
+                                    </mat-expansion-panel>
+
+                        <mat-expansion-panel hideToggle>
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Aşağıdaki harcama türleri için, aldığınız yardımlar dışında ortalama ne kadar harcama (satın alış) yaptınız? (Görüşmeci yıllık veya aylık hangisini ifade ediyorsa onu yazınız)
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th class="col-md-4">Harcama türü</th>
+                                                <th class="col-md-4">Aylık TL</th>
+                                                <th class="col-md-4">Son bir yıllık TL</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Gıda</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Giyim</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kira</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Yakacak (odun kömür, doğalgaz)</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eğitim (okul, kurs vb. ücretleri, kırtasiye malzemeleri vb.)</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sağlık</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Haberleşme (tel, internet...)</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Temizlik malzemeleri</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ulaşım</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sigara</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Su-elektrik-tüpgaz</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eğlence/kültür/sanat</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lokanta ve otel</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mobilya, ev aletleri ve bakım hizmetleri</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alkollü içecek</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Çeşitli mal ve hizmetler</td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                                <td><mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </mat-expansion-panel>
+                        -->
+			<!-- 	<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Aşağıda yer almakta olan gerekli bilgileri doldurunuz.</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>Aşağıdaki eşyalardan hanenizde kullandıklarınızın sayısını belirtiniz. (Yoksa 0 yaznız.)</td>
+                                <td>Aşağıdaki harcama türleri için, aldığınız yardımlar dışında ortalama ne kadar harcama (satın
+                                    alış) yaptınız? (Görüşmeci yıllık veya aylık hangisini ifade ediyorsa onu yazınız)
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Tüplü Televizyon">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="LCD/Plazma Televizyon">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Video/VCD/DVD/CD çalar">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Otomatik çamaşır makinesi">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bulaşık makinesi">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Buzdolabı">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Derin dondurucu">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Ev telefonu">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Cep telefonu">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Uydu anteni">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Bilgisayar">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="İnternet">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Mikrodalga fırın">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Halı yıkama makinesi">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Klima">
+                                            </mat-form-field>
+                                        </tr>
+                                        <tr>
+                                            <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Normal/mini fırın">
+                                            </mat-form-field>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-4">Harcama türü</th>
+                                            <th class="col-md-4">Aylık TL</th>
+                                            <th class="col-md-4">Son bir yıllık TL</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Gıda</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giyim</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kira</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Yakacak (odun kömür, doğalgaz)</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Eğitim (okul, kurs, kırtasiye malzemeleri vb.)</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sağlık</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Haberleşme (tel, internet...)</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Temizlik malzemeleri</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ulaşım</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sigara</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Su-elektrik-tüpgaz</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Eğlence/kültür/sanat</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lokanta ve otel</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobilya, ev aletleri ve bakım hizmetleri</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alkollü içecek</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Çeşitli mal ve hizmetler</td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </mat-expansion-panel>-->
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>Aşağıdaki eşyalardan hanenizde kullandıklarınızın sayısını belirtiniz. (Yoksa 0 yazınız.</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Tüplü Televizyon">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="LCD/Plazma Televizyon">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Video/VCD/DVD/CD çalar">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Otomatik çamaşır makinesi">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Bulaşık makinesi">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Buzdolabı">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Derin dondurucu">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Cep telefonu">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Uydu anteni">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Bilgisayar">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Normal/mini fırın">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="İnternet">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Ev telefonu">
+							</mat-form-field>
+						</tr>
+					</td>
+					<td>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Mikrodalga fırın">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Halı yıkama makinesi">
+							</mat-form-field>
+						</tr>
+						<tr>
+							<mat-form-field class="example-full-width">
+								<input matInput placeholder="Klima">
+							</mat-form-field>
+						</tr>
+					</td>
+				</table>
+			</mat-expansion-panel><br>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Aşağıdaki harcama türleri için, aldığınız yardımlar dışında ortalama ne kadar harcama (satın
+						alış) yaptınız? (Görüşmeci yıllık veya aylık hangisini ifade ediyorsa onu yazınız)
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+					<thead>
+					<tr>
+						<th class="col-md-4">Harcama türü</th>
+						<th class="col-md-4">Aylık TL</th>
+						<th class="col-md-4">Son bir yıllık TL</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>Gıda</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Giyim</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Kira</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Yakacak (odun kömür, doğalgaz)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Eğitim (okul, kurs, kırtasiye malzemeleri vb.)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Sağlık</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Haberleşme (tel, internet...)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Temizlik malzemeleri</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ulaşım</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Sigara</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Su-elektrik-tüpgaz</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Eğlence/kültür/sanat</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Lokanta ve otel</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Mobilya, ev aletleri ve bakım hizmetleri</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Alkollü içecek</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Çeşitli mal ve hizmetler</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</mat-expansion-panel><br>
+			<mat-card>
+				<label><b>Sağlık hizmetlerinden faydalanmakta zorluk yaşıyorsanız, bunun en önemli nedeni
+					nedir?</b></label>
+				<table>
+					<tr>
+						<mat-radio-group class="example-radio-group">
+							<mat-radio-button class="example-radio-button" value="Mali gücüm yok">Mali gücüm yok
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Tedavi yeri uzakta">Tedavi yeri uzakta
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Zamanım yoktu">Zamanım yoktu
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="Doktora ulaşamadım">Doktora ulaşamadım
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button" value="İlaç ve diğer tıbbi malzemelere ulaşamadım">
+								İlaç ve diğer tıbbi malzemelere ulaşamadım
+							</mat-radio-button>
+							<mat-radio-button class="example-radio-button"
+											  value="Bulunduğum yerde/mahallede sağlık ocağı/aile hekimi/toplum sağlık merkezi/aile sağlığı merkezi yok">
+								Bulunduğum yerde/mahallede sağlık ocağı/aile hekimi/toplum sağlık merkezi/aile sağlığı merkezi
+								yok
+							</mat-radio-button>
+
+						</mat-radio-group>
+					</tr>
+					<tr>
+						<mat-form-field class="example-full-width">
+							<input matInput placeholder="Diğer (Belirtiniz)">
+						</mat-form-field>
+					</tr>
+				</table>
+			</mat-card><br>
+			<mat-card>
+				<label><b>Yaşamınızı aşağıdaki düzeylerde devam ettirebilmek için aylık hanehalkı geliriniz kaç TL olmalıdır?</b></label>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Asgari (Kıt kanaat) düzeyde bir yaşam için (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Normal bir yaşam için (TL)">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="İyi bir yaşam için (TL)">
+				</mat-form-field>
+			</mat-card><br>
+			<mat-card>
+				<mat-form-field>
+					<mat-select placeholder="Hiç afet yaşadınız mı? (Hayır->47)">
+						<mat-option value="Evet">Evet</mat-option>
+						<mat-option value="Hayır">Hayır</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</mat-card><br>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						Afetten dolayı yitirdiğiniz varlıklarınız nelerdir? Varsa elinizdeki hasar tespit raporuna göre belirtiniz.
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<table>
+					<thead>
+					<tr>
+						<th class="col-md-4">Varlık türü</th>
+						<th class="col-md-4">Miktar</th>
+						<th class="col-md-4">Bedel TL</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>Konut (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Tarla (Dönüm)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Bağ-Bahçe (m2)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Sera (m2)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Üretim araçları (Kamyon, Traktör vs. (Adet))</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ev Eşyası (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ürün (Mahsul)(Kilogram)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Ahır, Kümes (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Küçükbaş Hayvan (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Büyükbaş Hayvan (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Kümes Hayvanı (Adet)</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>Dğer</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+						<td>
+							<mat-form-field class="example-full-width">
+								<input matInput>
+							</mat-form-field>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</mat-expansion-panel>
+
+		<div style="float: right; margin-top: 15px">
+			<!--<button mat-button color="warn" (click)="prevStep()">Previous</button>-->
+			<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button matStepperNext (click)="nextStep()" class="form-control">İlerle</button>
+		</div>
+	</mat-step>
+	<mat-step >
+		<ng-template matStepLabel>Hane Değerlendirme Soruları</ng-template>
+
+		<mat-card style="margin-top: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Ailede kadın ile ilgili olarak olumsuz bir durum tespit ettiniz mi? (Yok-->48(İncelemeciGözlem notu/Görüşmeciye doğrudan sorulmayacak))">
+					<mat-option value="Yok">Yok</mat-option>
+					<mat-option value="Var">Var</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<label style="margin-top: 10px"><b>Tespit ettiğiniz olumsuz durum nedir?</b></label>
+			<table>
+				<tr>
+					<mat-radio-group class="example-radio-group">
+						<mat-radio-button class="example-radio-button" value="Erken yaşta evlilik">Erken yaşta evlilik
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Şiddet (ekonomik, fiziksel, sosyal, cinsel, psikolojik)">Şiddet (ekonomik, fiziksel, sosyal, cinsel, psikolojik)
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Psikolojik sorunlar ve psikolojik destek ihtiyacı">Psikolojik sorunlar ve psikolojik destek ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Çevre (aile/eski eş/komşu vb.) baskısı">Çevre (aile/eski eş/komşu vb.) baskısı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Hukuki destek ihtiyacı">
+							Hukuki destek ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Eşi ile igili sorunlar (eşin terk etmesi/kaybolması/ceza evinde olması vb.)">
+							Eşi ile igili sorunlar (eşin terk etmesi/kaybolması/ceza evinde olması vb.)
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Çocuklarla ilgili sorunlar">
+							Çocuklarla ilgili sorunlar
+						</mat-radio-button>
+					</mat-radio-group>
+				</tr>
+				<tr>
+					<mat-form-field class="example-full-width">
+						<input matInput placeholder="Diğer (Belirtiniz)">
+					</mat-form-field>
+				</tr>
+			</table>
+		</mat-card>
+		<mat-card style="margin-top: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Ailede çocuk ile ilgili olarak olumsuz bir durum tespit ettiniz mi? (Yok-->49(İncelemeciGözlem notu/Görüşmeciye doğrudan sorulmayacak))">
+					<mat-option value="Yok">Yok</mat-option>
+					<mat-option value="Var">Var</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<label style="margin-top: 10px"><b>Tespit ettiğiniz olumsuz durum nedir?</b></label>
+			<table>
+				<tr>
+					<mat-radio-group class="example-radio-group">
+						<mat-radio-button class="example-radio-button" value="Sokakta çalışma">Sokakta çalışma
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Şiddet (ekonomik, fiziksel, sosyal, cinsel, psikolojik)">Şiddet (ekonomik, fiziksel, sosyal, cinsel, psikolojik)
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Psikolojik sorunlar ve psikolojik destek ihtiyacı">Psikolojik sorunlar ve psikolojik destek ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="İhmal">İhmal
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Sağlık sorunu">
+							Sağlık sorunu
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Çevre (aile/eski eş/ komşu vb.) baskısı">
+							Çevre (aile/eski eş/ komşu vb.) baskısı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Ebeveynler ile ilgili sorunlar">
+							Ebeveynler ile ilgili sorunlar
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Eğitim ve öğrenme ile ilgili sorunlar">
+							Eğitim ve öğrenme ile ilgili sorunlar
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Nüfusa kayıtlı olmama">
+							Nüfusa kayıtlı olmama
+						</mat-radio-button>
+					</mat-radio-group>
+				</tr>
+				<tr>
+					<mat-form-field class="example-full-width">
+						<input matInput placeholder="Diğer (Belirtiniz)">
+					</mat-form-field>
+				</tr>
+			</table>
+		</mat-card>
+		<mat-card style="margin-top: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Ailede yaşlı ile ilgili olarak olumsuz bir durum tespit ettiniz mi? (Yok-->50(İncelemeciGözlem notu/Görüşmeciye doğrudan sorulmayacak))">
+					<mat-option value="Yok">Yok</mat-option>
+					<mat-option value="Var">Var</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<label style="margin-top: 10px"><b>Tespit ettiğiniz olumsuz durum nedir?</b></label>
+			<table>
+				<tr>
+					<mat-radio-group class="example-radio-group">
+						<mat-radio-button class="example-radio-button" value="Bakım ihtiyacı">Bakım ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Şiddet (ekonomik, fiziksel, sosyal, cinsel, psikolojik)">Şiddet (ekonomik, fiziksel, sosyal, cinsel, psikolojik)
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Psikolojik sorunlar ve psikolojik destek ihtiyacı">Psikolojik sorunlar ve psikolojik destek ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="İhmal">İhmal
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Sağlık sorunu">
+							Sağlık sorunu
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Engellilere yönelik araç gereç ihtiyacı">
+							Engellilere yönelik araç gereç ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="İletişimle ilgili sorunlar">
+							İletişimle ilgili sorunlar
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button"
+										  value="Konutun gerekli koşulları taşımaması">
+							Konutun gerekli koşulları taşımaması
+						</mat-radio-button>
+					</mat-radio-group>
+				</tr>
+				<tr>
+					<mat-form-field class="example-full-width">
+						<input matInput placeholder="Diğer (Belirtiniz)">
+					</mat-form-field>
+				</tr>
+			</table>
+		</mat-card>
+		<mat-card style="margin-top: 15px">
+			<mat-form-field>
+				<mat-select placeholder="Ailede zararlı alışkanlık eğilimi (alkol ve madde bağımlılığı) tespit ettiniz mi? (Yok-->52(İncelemeciGözlem notu/Görüşmeciye doğrudan sorulmayacak))">
+					<mat-option value="Yok">Yok</mat-option>
+					<mat-option value="Var">Var</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<label style="margin-top: 10px"><b>Tespit ettiğiniz olumsuz durum nedir?</b></label>
+			<table>
+				<tr>
+					<mat-radio-group class="example-radio-group">
+						<mat-radio-button class="example-radio-button" value="Alkol bağımlılığı/Alkolizm">Alkol bağımlılığı/Alkolizm
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Uçucu ve uyarıcı madde">Uçucu ve uyarıcı madde
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Psikolojik sorunlar ve psikolojik destek ihtiyacı">Psikolojik sorunlar ve psikolojik destek ihtiyacı
+						</mat-radio-button>
+						<mat-radio-button class="example-radio-button" value="Kumar">Kumar
+						</mat-radio-button>
+					</mat-radio-group>
+				</tr>
+			</table>
+		</mat-card>
+		<mat-card style="margin-top: 15px">
+		<mat-form-field>
+			<mat-select placeholder="Son zamanlarda yaşadığınız ve aileyi halen etkilemekte olan olumsuz bir olay oldu mu?(Yok-->Gözüşme sonu)">
+				<mat-option value="Yok">Yok</mat-option>
+				<mat-option value="Var">Var</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<label style="margin-top: 10px"><b>Aileyi olumsuz etkileyen olay nedir?</b></label>
+		<table>
+			<tr>
+				<mat-radio-group class="example-radio-group">
+					<mat-radio-button class="example-radio-button" value="Boşanma/Boşanma süreci/Ayrılık">Boşanma/Boşanma süreci/Ayrılık
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button" value="İntihar">İntihar
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button" value="Ölüm">Ölüm
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button" value="Aile bireyinin cezaevinde / tutukevinde olması">Aile bireyinin cezaevinde/tutukevinde olması
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button" value="Aile bireyinin terk etmesi / kaybolması">
+						Aile bireyinin terk etmesi / kaybolması
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button"
+									  value="Kaza, yangın, sel gibi acil durum veya afet">
+						Kaza, yangın, sel gibi acil durum veya afet
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button"
+									  value="Güvenlik sorunları">
+						Güvenlik sorunları
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button"
+									  value="Çevre baskısı">
+						Çevre baskısı
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button"
+									  value="Aile içi sorunlar">
+						Aile içi sorunlar
+					</mat-radio-button>
+					<mat-radio-button class="example-radio-button"
+									  value="İşini kaybetme">
+						İşini kaybetme
+					</mat-radio-button>
+				</mat-radio-group>
+			</tr>
+			<tr>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Diğer (Belirtiniz)">
+				</mat-form-field>
+			</tr>
+		</table>
+		</mat-card>
+		<mat-card style="margin-top: 15px">
+		<mat-form-field>
+			<mat-select placeholder="Yaşadığınız bu olumsuz durum durumla ilgili rehberlik / danışmanlık almak ister misiniz">
+				<mat-option value="Evet">Evet</mat-option>
+				<mat-option value="Hayır">Hayır</mat-option>
+			</mat-select>
+		</mat-form-field>
+		</mat-card>
+		<div style="float: right; margin-top: 15px">
+			<!--<button mat-button color="warn" (click)="prevStep()">Previous</button>-->
+			<button style="background: #4EAF47; color: #ffffff;" mat-stroked-button (click)="nextStep()" class="form-control">Bitir</button>
+		</div>
+	</mat-step>
+</mat-horizontal-stepper>
+
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

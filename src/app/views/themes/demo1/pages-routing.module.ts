@@ -8,6 +8,10 @@ import { ErrorPageComponent } from './content/error-page/error-page.component';
 import { AuthGuard } from '../../../core/auth';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import {SdkFormComponent} from '../../pages/sdk-form/sdk-form.component';
+import {CreateFormComponent} from '../../pages/create-form/create-form.component';
+import {SettingsComponent} from '../../pages/settings/settings.component';
+import {UserInfComponent} from '../../pages/user-inf/user-inf.component';
+import {UserCreateComponent} from '../../pages/user-create/user-create.component';
 
 const routes: Routes = [
 	{
@@ -23,6 +27,22 @@ const routes: Routes = [
 				path: 'sdk',
 				// loadChildren: 'app/views/pages/sdk-form/sdk-form.module#SdkFormModule'
 				component: SdkFormComponent
+			},
+			{
+				path: 'createForm',
+				component: CreateFormComponent
+			},
+			{
+				path: 'settings',
+				component: SettingsComponent
+			},
+			{
+				path: 'userDefinition',
+				component: UserInfComponent
+			},
+			{
+				path: 'createPersonel',
+				component: UserCreateComponent,
 			},
 			{
 				path: 'error/403',

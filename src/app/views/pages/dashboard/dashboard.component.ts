@@ -28,13 +28,13 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.chartOptions1 = {
-			data: [10, 14, 18, 11, 9, 12, 14, 17, 18, 14],
-			color: this.layoutConfigService.getConfig('colors.state.brand'),
+			data: [1, 3, 4, 1, 2, 4, 2, 6],
+			color: this.layoutConfigService.getConfig('colors.state.success'),
 			border: 3
 		};
 		this.chartOptions2 = {
-			data: [11, 12, 18, 13, 11, 12, 15, 13, 19, 15],
-			color: this.layoutConfigService.getConfig('colors.state.danger'),
+			data: [2, 4, 5, 4, 3, 3, 5, 6, 4],
+			color: this.layoutConfigService.getConfig('colors.state.brand'),
 			border: 3
 		};
 		this.chartOptions3 = {

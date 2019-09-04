@@ -35,7 +35,7 @@ export class LayoutConfig {
 				'brand': '#5d78ff',
 				'dark': '#282a3c',
 				'light': '#ffffff',
-				'primary': '#5867dd',
+				'primary': '#4EAF47',
 				'success': '#34bfa3',
 				'info': '#36a3f7',
 				'warning': '#ffb822',

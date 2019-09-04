@@ -1,0 +1,57 @@
+<div align="center" style="margin-top: 15px">
+	<h2 mat-dialog-title>Personel oluştur</h2>
+</div>
+<hr>
+<div style="margin: 40px">
+	<mat-dialog-content class="mat-typography" style="margin: 40px">
+
+		<form [formGroup]="userCreate" (submit)="userSave()">
+				<mat-form-field class="example-full-width">
+						<input matInput placeholder="Ad" formControlName="name" name="name">
+					</mat-form-field>
+			<mat-form-field class="example-full-width">
+						<input matInput placeholder="Soyad" formControlName="surname" name="surname">
+					</mat-form-field>
+
+			<mat-form-field class="example-full-width">
+						<input type="number" matInput placeholder="Telefon Numarası" formControlName="cellPhone"
+							   name="cellPhone">
+					</mat-form-field>
+			<mat-form-field style="margin-right:65px">
+						<input required matInput placeholder="Email giriniz" formControlName="email" required>
+						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+					</mat-form-field>
+			<mat-form-field style="margin-right:65px">
+						<input required matInput formControlName="password" placeholder="Şifre oluştur"
+							   [type]="hide ? 'password' : 'text'">
+						<button mat-icon-button matSuffix (click)="hide = !hide"
+								[attr.aria-label]="'Hide password'"
+								[attr.aria-pressed]="hide">
+							<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+						</button>
+					</mat-form-field>
+			<mat-form-field>
+						<mat-select formControlName="authority" matNativeControl required
+									placeholder="Kullanıcı yetkisi seçiniz">
+							<mat-option value="Form oluştur">Form oluştur</mat-option>
+							<mat-option value="Denetleme yap">Denetleme yap</mat-option>
+							<mat-option value="Denetleme yap ve Form oluştur">Denetleme yap ve form oluştur
+							</mat-option>
+							<mat-option value="Herşeyi yap">Herşeyi yap</mat-option>
+						</mat-select>
+			</mat-form-field>
+				<div style="float: right; margin-top: 15px">
+					<button type="submit" mat-button style="background: #4EAF47; margin-right: 3px; color: #ffffff;" class="form-control">Kaydet
+					</button>
+				</div>
+				<div style="float: right; margin-top: 15px; margin-right: 3px" >
+					<button mat-button mat-dialog-close style="background: #4EAF47; color: #ffffff;margin-right: 3px" class="form-control">İptal</button>
+				</div>
+		</form>
+	</mat-dialog-content>
+</div>
+<!--
+<mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+-->
